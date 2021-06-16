@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Toast message generator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Mulish', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      background: #ddd;
+    }
+
+    button {
+      background: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.5s ease-in-out;
+    }
+
+    button:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    button:active {
+      outline: none;
+    }
+
+    .toastWrap {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+    }
+
+    .toastWrap * {
+      margin: 10px 0;
+      background: #fff;
+      color: palevioletred;
+      padding: 8px 16px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="btn">Creat toast</button>
+
+  <div class="toastWrap"></div>
+
+  <script>
+    const toastWrap = document.querySelector('.toastWrap');
+    const messages = ['One', 'Two', 'Three', 'Four', 'Five'];
+    const btn = document.querySelector('.btn');
+
+    btn.addEventListener('click', createToast);
+
+    function createToast() {
+      let div = document.createElement('div');
+      div.textContent = messages[Math.floor(Math.random() * messages.length) + 0];
+      toastWrap.appendChild(div);
+      setTimeout(() => {
+        div.remove();
+      }, 3000);
+    }
+
+
+  </script>
+</body>
+
+</html>

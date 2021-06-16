@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>FAQ collapse</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap');
+    *{
+      box-sizing: border-box;
+    }
+    body{
+      margin:0;
+      padding:0;
+      background:#eee;
+      font-family: 'Mulish', sans-serif;
+    }
+    h2{
+      text-align: center;
+    }
+    .faq-container{
+      max-width:600px;
+      margin:20px auto;
+      border:1px solid #ccc;
+      padding:20px;
+      border-radius:5px;
+      position: relative;
+      transition: 0.5s ease;
+    }
+    .faq-title{
+      margin:0;
+    }
+    .faq-container.active .faq-title{
+      margin:0 0 20px;
+    }
+    .faq-text{
+      display:none;
+    }
+    .faq-container.active{
+      background:#fff;
+      box-shadow: 0 0 8px #bbb;
+    }
+    .faq-container.active .faq-text{
+      display: block;
+      transition: 0.5s ease;
+    }
+    .faq-btn{
+      position:absolute;
+      top:20px;
+      right:20px;
+      cursor: pointer;
+      background:transparent;
+      border:none;
+      font-size:18px;
+    }
+    .faq-btn .fa-times, .faq-container.active .faq-btn .fa-chevron-down{
+      display: none;
+    }
+    .faq-container.active .faq-btn .fa-times{
+      display: block;
+    }
+    
+  </style>
+</head>
+<body>
+  <h2>Frequently Asked Questions(FAQs)</h2>
+  <div class="faq-container">
+    <h3 class="faq-title">FAQ question 1</h3>
+    <div class="faq-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum nisi, harum et facere ipsum repudiandae a libero accusamus aspernatur inventore adipisci, neque unde soluta, quaerat beatae earum hic doloremque vel.</div>
+    <button class="faq-btn">
+      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div class="faq-container">
+    <h3 class="faq-title">FAQ question 2</h3>
+    <div class="faq-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum nisi, harum et facere ipsum
+      repudiandae a libero accusamus aspernatur inventore adipisci, neque unde soluta, quaerat beatae earum hic doloremque
+      vel.</div>
+    <button class="faq-btn">
+      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div class="faq-container">
+    <h3 class="faq-title">FAQ question 3</h3>
+    <div class="faq-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum nisi, harum et facere ipsum
+      repudiandae a libero accusamus aspernatur inventore adipisci, neque unde soluta, quaerat beatae earum hic doloremque
+      vel.</div>
+    <button class="faq-btn">
+      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div class="faq-container">
+    <h3 class="faq-title">FAQ question 4</h3>
+    <div class="faq-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum nisi, harum et facere ipsum
+      repudiandae a libero accusamus aspernatur inventore adipisci, neque unde soluta, quaerat beatae earum hic doloremque
+      vel.</div>
+    <button class="faq-btn">
+      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <script>
+    const buttons= document.querySelectorAll('.faq-btn');
+    const faqContainers= document.querySelectorAll('.faq-container');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', function(){
+        removeActive();
+        button.parentNode.classList.toggle('active');
+      })
+    })
+
+    function removeActive(){
+      faqContainers.forEach(faqContainer => {
+        faqContainer.classList.remove('active');
+      })
+    }
+  </script>
+
+</body>
+</html>

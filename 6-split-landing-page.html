@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Split Landing page</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap');
+    *{
+      box-sizing: border-box;
+    }
+    :root{
+      --left-bg-overlay:rgb(255,86,14);
+      --right-bg-overlay:rgb(19,168,255);
+      --hover-width:75%;
+      --hover-other-width:25%;
+    }
+    body{
+      margin:0;
+      padding:0;
+      background:#ddd;
+      font-family: 'Mulish', sans-serif;
+    }
+    .container{
+      position:relative;
+      width:100%;
+      height:100%;
+      display: flex;
+    }
+    .split{
+      width:50%;
+      height: 100vh;
+      position: relative;
+    }
+    .split.left{
+      background-image:url(https://images.unsplash.com/photo-1530616858450-99ba4525057d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size:cover;
+    }
+    .split.left:before{
+      content: '';
+      position: absolute;
+      left:0;
+      top:0;
+      width:100%;
+      height: 100%;
+      background:rgba(255,86,14,0.4);
+    }
+    .split.right{
+      background-image:url(https://images.unsplash.com/photo-1499678329028-101435549a4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size:cover;
+    } 
+    .split.right:before{
+      content: '';
+      position: absolute;
+      left:0;
+      top:0;
+      width:100%;
+      height: 100%;
+      background:rgba(19,168,255,0.4);
+    }
+    .split h2{
+      position: absolute;
+      font-size:36px;
+      color:#fff;
+      top:30%;
+      left:50%;
+      transform:translateX(-50%);
+      white-space: nowrap;
+    }
+    .split a{
+      position: absolute;
+      top:45%;
+      left:50%;
+      transform:translateX(-50%);
+      font-size:18px;
+      color:#fff;
+      border:2px solid #ccc;
+      padding:8px 24px;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+    .split.left a:hover{
+      background: var(--left-bg-overlay);
+    }
+    .split.right a:hover{
+      background: var(--right-bg-overlay);
+    }
+    .hoverWidthLeft .left{
+      width: var(--hover-width);
+    }
+    .hoverWidthLeft .right{
+      width: var(--hover-other-width);
+    }
+    .hoverWidthRight .left{
+      width: var(--hover-other-width);
+    }
+    .hoverWidthRight .right{
+      width: var(--hover-width);
+    }
+    .hoverWidthLeft .left, .hoverWidthLeft .right, .hoverWidthRight .left, .hoverWidthRight .right{
+      transition: 0.8s ease;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="split left">
+      <h2>Left Side Panel</h2>
+      <a href="#">Read more</a>
+    </div>
+    <div class="split right">
+      <h2>right Side Panel</h2>
+      <a href="#">Read more</a>
+    </div>
+  </div>
+
+  <script>
+    const left= document.querySelector(".left");
+    const right= document.querySelector(".right");
+    const container= document.querySelector(".container");
+
+    left.addEventListener('mouseenter', () => container.classList.add('hoverWidthLeft'))
+    left.addEventListener('mouseleave', () => container.classList.remove('hoverWidthLeft'))
+    right.addEventListener('mouseenter', () => container.classList.add('hoverWidthRight'))
+    right.addEventListener('mouseleave', () => container.classList.remove('hoverWidthRight'))
+  </script>
+</body>
+</html>

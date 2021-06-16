@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Form wave animation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap');
+    *{
+      box-sizing: border-box;
+    }
+    body{
+      margin:0;
+      padding:0;
+      background:#088eed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Mulish', sans-serif;
+    }
+    .container{
+      padding:20px 30px;
+      color:#fff;
+      background:rgba(0,0,0,0.4);
+      border-radius: 5px;
+    }
+    h2{
+      margin:0 0 30px 0;
+      text-align: center;
+    }
+    .form-control{
+      margin:20px 0 40px;
+      position: relative;
+    }
+    .form-control label{
+      display: block;
+    }
+    .form-control input{
+      width:100%;
+      background:transparent;
+      border:none;
+      border-bottom: 1px solid #fff;
+      color:#fff;
+    }
+    
+    .form-control label{
+      position:absolute;
+      top:-5px;
+      z-index: -1;
+      transition: 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    .form-control input:focus + label{
+      top:-25px;
+    }
+    button{
+      background:skyblue;
+      border:none;
+      display: block;
+      width:100%;
+      padding:8px 0;
+      text-align: center;
+      border-radius:3px;
+      cursor: pointer;
+    }
+    .register{
+      color:skyblue;
+      text-decoration: none;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Please Login</h2>
+    <form action="">
+      <div class="form-control">
+        <input type="text" name="" id="">
+        <label for="">Email</label>
+      </div>
+      <div class="form-control">
+        <input type="password" name="" id="">
+        <label for="">Password</label>
+      </div>
+      <button>Login</button>
+      <p>Don't have an account? <a href="" class="register">Register</a></p>
+    </form>
+  </div>
+</body>
+</html>

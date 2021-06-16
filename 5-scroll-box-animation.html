@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll box animation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap');
+    *{
+      box-sizing: border-box;
+    }
+    body{
+      margin:0;
+      padding:0;
+      background:#ddd;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Mulish', sans-serif;
+      overflow-x: hidden;
+    }
+    .box{
+      width:400px;
+      height:200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background:palevioletred;
+      color:#fff;
+      border-radius:6px;
+      margin:10px;
+      font-size:20px;
+      transform: translateX(300%);
+      transition: 0.4s ease;
+    }
+    .box:nth-of-type(even){
+      transform:translateX(-300%);
+    }
+    .box.show{
+      transform:translateX(0);
+    }
+    
+  </style>
+</head>
+<body>
+  <h2>Scroll to see the animation</h2>
+  <div class="boxContainer">
+    <div class="box">Content</div>
+    <div class="box">Content</div>
+    <div class="box">Content</div>
+    <div class="box">Content</div>
+    <div class="box">Content</div>
+    <div class="box">Content</div>
+  </div>
+
+  <script>
+    const boxes= document.querySelectorAll(".box");
+    window.addEventListener('scroll', checkBoxes);
+
+    checkBoxes()
+
+    function checkBoxes(){
+      const triggerBottom= window.innerHeight / 5 * 4;
+      boxes.forEach((box) => {
+        const boxTop= box.getBoundingClientRect().top;
+
+        if(boxTop < triggerBottom){
+          box.classList.add('show');
+        }else{
+          box.classList.remove('show');
+        }
+      })
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Hidden search widget</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap');
+    *{
+      box-sizing: border-box;
+    }
+    body{
+      margin:0;
+      padding:0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background:#ddd;
+      font-family: 'Mulish', sans-serif;
+    }
+    .counterWrap{
+      width:700px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+    }
+    .counterWrap i{
+      font-size:2rem;
+    }
+    .counter{
+      font-size:3.5rem;
+      font-weight: bold;
+    }
+    @media screen and (max-width:768px){
+      .counterWrap{
+        width:100%;
+        flex-direction: column;
+      }
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="counterWrap">
+    <div class="counter-container">
+      <i class="fab fa-facebook"></i>
+      <div class="counter" data-target="12000"></div>
+      <p class="counter-text">Facebook followers</p>
+    </div>
+    
+    <div class="counter-container">
+      <i class="fab fa-twitter-square"></i>
+      <div class="counter" data-target="6000"></div>
+      <p class="counter-text">Twitter followers</p>
+    </div>
+    
+    <div class="counter-container">
+      <i class="fab fa-youtube"></i>
+      <div class="counter" data-target="8000"></div>
+      <p class="counter-text">Youtube followers</p>
+    </div>
+  </div>
+
+  <script>
+    const counters= document.querySelectorAll('.counter');
+    
+
+    counters.forEach(counter => {
+      counter.innerHTML = 0;
+
+      const updateCounter= () => {
+        const target = +counter.getAttribute('data-target');
+        const c = +counter.innerText;
+
+        const increment = target / 50;
+
+        if(c < target){
+          counter.innerText= `${Math.ceil(c + increment)}`;
+          setTimeout(updateCounter, 1)
+        }else {
+          counter.innerText= target;
+        }
+        
+      }
+
+      updateCounter()
+
+    })
+  </script>
+</body>
+</html>

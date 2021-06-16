@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>FAQ collapse</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap');
+    *{
+      box-sizing: border-box;
+    }
+    body{
+      margin:0;
+      padding:0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background:#eee;
+      font-family: 'Mulish', sans-serif;
+    }
+    .container{
+      max-width:500px;
+    }
+    h6{
+      font-size:18px;
+      margin:0 0 20px;
+    }
+    textarea{
+      width:100%;
+      padding:10px;
+      border:none;
+      height: 100px;
+    }
+    .tagsWrap{
+      margin-top:20px;
+    }
+    .tag{
+      display: inline-block;
+      background:coral;
+      color:#fff;
+      padding:8px 20px;
+      font-size:16px;
+      margin:0 10px 10px 0;
+      border-radius: 30px;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h6>Enter your choice separated by comma(',')</h6>
+    <textarea class="textArea" id="textArea" placeholder="Enter text..."></textarea>
+    <div class="tagsWrap"></div>
+  </div>
+
+  <script>
+    const textArea= document.getElementById('textArea');
+    const tagsWrap= document.querySelector('.tagsWrap');
+
+    textArea.focus();
+
+    textArea.addEventListener('keyup', (e) => {
+      createTags(e.target.value);
+    })
+
+    function createTags(input){
+      const tags= input.split(',').filter(tag => tag.trim('')).map(tag => tag.trim(''));
+      tagsWrap.innerHTML=''
+      
+      tags.forEach((tag) =>{
+        const elem= document.createElement('span');
+        elem.setAttribute('class', 'tag');
+        elem.innerText= tag;
+        tagsWrap.appendChild(elem);
+      })
+    }
+
+  </script>
+</body>
+</html>

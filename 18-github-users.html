@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Toast message generator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Mulish', sans-serif;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      margin: 50px auto;
+    }
+
+    input {
+      width: 100%;
+      margin-bottom: 50px;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .userWrap {
+      background: purple;
+      color: #fff;
+      width: 100%;
+      display: flex;
+      padding: 50px;
+      border-radius: 4px;
+    }
+
+    .profilePic {
+      margin-right: 50px;
+    }
+
+    .profilePic img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 5px solid #f5f5f5;
+    }
+
+    .socialWrap {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+      max-width: 400px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="search-box">
+      <form action="" id="form">
+        <input id="search" type="text" placeholder="Search github user">
+      </form>
+    </div>
+
+    <div class="userWrap">
+
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
+  <script>
+    const apiUrl = 'https://api.github.com/users/';
+    const form = document.getElementById('form');
+    const search = document.getElementById('search');
+    const userWrap = document.querySelector('.userWrap');
+
+    async function getUser(user) {
+      try {
+        const { data } = await axios(apiUrl + user);
+        createUserCard(data)
+      }
+      catch (err) {
+        if (err.response.status == 404) {
+          createErrorCard('No user found');
+        }
+      }
+    }
+
+    function createUserCard(user) {
+      const userCard = `
+      <div class="profilePic">
+        <img src=${user.avatar_url}
+          alt=${user.name}>
+      </div>
+      <div class="userDetails">
+        <h3 class="userName">${user.name}</h3>
+        <p>${user.bio}</p>
+        <ul class="socialWrap">
+          <li>${user.followers} Followers</li>
+          <li>${user.following} Following</li>
+          <li>${user.public_repos} repos</li>
+        </ul>
+      </div>
+      `
+      userWrap.innerHTML = userCard;
+    }
+
+    function createErrorCard(error) {
+      userWrap.innerHTML = error;
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const user = search.value;
+      if (user) {
+        getUser(user);
+        search.value = ' ';
+      }
+    })
+  </script>
+</body>
+
+</html>

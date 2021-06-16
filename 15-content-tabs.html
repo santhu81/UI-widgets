@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Image slider</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Mulish', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      max-width: 75%;
+      margin: 0 auto;
+    }
+
+    .tabsWrap {
+      display: flex;
+    }
+
+    .tabNav {
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    .tabNav-active {
+      background: #555;
+      color: #fff;
+    }
+
+    .tabContent {
+      background: #eee;
+      border: 1px solid #ccc;
+      padding: 15px;
+      display: none;
+    }
+
+    .tabContent-active {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="tabsWrap">
+      <button class="tabNav tabNav-active" data-tab="1">Tab 1</button>
+      <button class="tabNav" data-tab="2">Tab 2</button>
+      <button class="tabNav" data-tab="3">Tab 3</button>
+    </div>
+    <div class="tabsContentWrap">
+      <div class="tabContent tabContent-1 tabContent-active">
+        <h2>Tab 1 heading</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, sunt a excepturi laudantium non aliquam
+          maiores aliquid iure debitis accusantium, nesciunt placeat autem. Pariatur adipisci repudiandae magni! Quia,
+          sapiente vel.</p>
+      </div>
+      <div class="tabContent tabContent-2">
+        <h2>Tab 2 heading</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, sunt a excepturi laudantium non aliquam
+          maiores
+          aliquid iure debitis accusantium, nesciunt placeat autem. Pariatur adipisci repudiandae magni! Quia, sapiente
+          vel.
+        </p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, sunt a excepturi laudantium non aliquam
+          maiores
+          aliquid iure debitis accusantium, nesciunt placeat autem. Pariatur adipisci repudiandae magni! Quia, sapiente
+          vel.
+        </p>
+      </div>
+      <div class="tabContent tabContent-3">
+        <h2>Tab 3 heading</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, sunt a excepturi laudantium non aliquam
+          maiores
+          aliquid iure debitis accusantium, nesciunt placeat autem. Pariatur adipisci repudiandae magni! Quia, sapiente
+          vel. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, sunt a excepturi laudantium non aliquam
+          maiores
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tabsWrap = document.querySelector('.tabsWrap');
+    const tabs = document.querySelectorAll('.tabNav');
+    const tabContents = document.querySelectorAll('.tabContent');
+
+    tabsWrap.addEventListener('click', function (e) {
+      const clicked = e.target;
+
+      tabs.forEach(tab => {
+        tab.classList.remove('tabNav-active');
+      })
+      tabContents.forEach(tabContent => {
+        tabContent.classList.remove('tabContent-active');
+      })
+      clicked.classList.add('tabNav-active');
+
+      document.querySelector(`.tabContent-${clicked.dataset.tab}`).classList.add('tabContent-active');
+    })
+
+
+  </script>
+</body>
+
+</html>

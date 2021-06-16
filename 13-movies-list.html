@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Movies List</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap');
+    *{
+      box-sizing: border-box;
+    }
+    body{
+      margin:0;
+      padding:0;
+      font-family: 'Mulish', sans-serif;
+      background:#126e82;
+    }
+    header{
+      background:#132c33;
+      padding:15px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    header input{
+      padding:5px 10px;
+      border-radius: 50px;
+      border:none;
+      outline: none;
+    }
+    header input:focus{
+      background-color: #51c4d3;
+    }
+    .contentWrap{
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      padding:20px;
+    }
+    .movie{
+      margin:1rem;
+      width:300px;
+      background:#132c33;
+      position: relative;
+      overflow: hidden;
+      box-shadow:0 0 5px #555;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .movie img{
+      max-width:100%;
+    }
+    .movie-description{
+      display: flex;
+      background:#51c4d3;
+      padding:10px;
+      color:#fff;
+      justify-content: space-between;
+    }
+    .movie-description h5{
+      margin:0;
+      font-size:16px;
+    }
+    .movie-description .rating{
+      font-size:12px;
+      padding:5px;
+    }
+    .movie-description .green{
+      background:green;
+      color:#fff;
+    }
+    .overview{
+      background:rgba(255, 255, 255, 0.8);
+      padding:10px;
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      transform:translateY(101%);
+      transition: transform 0.5s ease;
+    }
+    .overview h6{
+      margin:0;
+      font-size:14px;
+    }
+    .movie:hover .overview{
+      transform:translateY(0);
+    }
+    
+  </style>
+</head>
+<body>
+  <header>
+    <form action="" id="search-form">
+      <input type="text" placeholder="Search Movies">
+    </form>
+  </header>
+  
+  <div class="contentWrap"></div>
+
+  <script>
+    const mainContent= document.querySelector('.contentWrap');
+    URL= 'https://jsonplaceholder.typicode.com/albums/1/photos';
+
+    getPhotos(URL);
+
+    async function getPhotos(photos){
+      let myObject= await fetch(photos);
+      let myPhotos= await myObject.json();
+      showPhotos(myPhotos);
+    }
+
+    function showPhotos(photos){
+      mainContent.innerHTML=''
+      
+      photos.forEach(photo => {
+        const {id,title,url} = photo;
+        
+        const movieEl= document.createElement('div');
+        movieEl.classList.add('movie');
+        movieEl.innerHTML= `
+          <img src="${url}" alt="">
+          <div class="movie-description">
+            <h5>${title}</h5>
+          </div>
+        `
+        mainContent.appendChild(movieEl);
+      })
+    }
+
+
+  </script>
+</body>
+</html>

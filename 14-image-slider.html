@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Image slider</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Mulish', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .slider-container {
+      width: 50vw;
+      height: 50vh;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.16), 0 4px 6px rgba(0, 0, 0, 0.25);
+      position: relative;
+    }
+
+    .slide {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      background-position: center;
+      background-size: cover;
+      transition: 0.5s ease;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: 2px solid orange;
+      padding: 10px 20px;
+      font-size: 25px;
+      background: #fff;
+      color: #555;
+      cursor: pointer;
+    }
+
+    .arrow-left {
+      left: -56px;
+    }
+
+    .arrow-right {
+      right: -56px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slider-container">
+    <div class="slide active"
+      style="background:url(https://images.unsplash.com/photo-1620751888422-7a8165627618?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80)">
+    </div>
+    <div class="slide"
+      style="background:url(https://images.unsplash.com/photo-1543269665-bd1bc9e6f296?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80)">
+    </div>
+    <div class="slide"
+      style="background:url(https://images.unsplash.com/photo-1602016736566-7ed6a58894bd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80)">
+    </div>
+    <div class="slide"
+      style="background:url(https://images.unsplash.com/photo-1521790361543-f645cf042ec4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80)">
+    </div>
+
+    <button class="arrow arrow-left">
+      <i class="fas fa-angle-left"></i>
+    </button>
+    <button class="arrow arrow-right">
+      <i class="fas fa-angle-right"></i>
+    </button>
+
+  </div>
+
+
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const leftArrow = document.querySelector('.arrow-left');
+    const rightArrow = document.querySelector('.arrow-right');
+    let activeSlide = 0;
+
+    rightArrow.addEventListener('click', () => {
+      activeSlide++;
+      if (activeSlide > slides.length - 1) {
+        activeSlide = 0;
+      }
+      setActiveSlide();
+    })
+
+    leftArrow.addEventListener('click', () => {
+      activeSlide--;
+      if (activeSlide < 0) {
+        activeSlide = slides.length - 1;
+      }
+      setActiveSlide();
+    })
+
+    function setActiveSlide() {
+      slides.forEach(slide => {
+        slide.classList.remove('active');
+        slides[activeSlide].classList.add('active');
+      })
+    }
+
+  </script>
+</body>
+
+</html>
